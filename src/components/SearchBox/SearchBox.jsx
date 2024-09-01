@@ -1,7 +1,12 @@
 import { useId } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectNameFilter } from '../../redux/selectors';
+import { changeFilter } from '../../redux/filtersSlice';
 import css from './SearchBox.module.css';
 
-const SearchBox = ({ value, onSearchChange }) => {
+export default function SearchBox() {
+  const value = useSelector(selectNameFilter);
+  const dispatch = useDispatch();
   const searchId = useId();
 
   return (
@@ -16,11 +21,11 @@ const SearchBox = ({ value, onSearchChange }) => {
         name="seacrhContact"
         id={searchId}
         value={value}
-        onChange={event => {
-          onSearchChange(event.target.value.toLowerCase().trim());
+        onChange={evt => {
+          const searchName = evt.target.value.toLowerCase().trim();
+          dispatch(changeFilter({ searchName }));
         }}
       />
     </fieldset>
   );
-};
-export default SearchBox;
+}
