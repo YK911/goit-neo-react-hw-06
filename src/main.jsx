@@ -7,7 +7,7 @@ import App from './App';
 import store, { persistor } from './redux/store';
 
 import 'the-new-css-reset/css/reset.css';
-import './index.css';
+import './main.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
